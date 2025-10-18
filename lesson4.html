@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!--table of contents cause this things getting WAY TOO LONG (no diddy)-->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>roblox esque type stuff (miss grace please dont deduct points its JUST the title crying emoji</title>
+  <style>
+
+.page-content {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+    .profile-container {
+      background-color: white;
+      max-width: 900px;
+      margin: 40px auto;
+      overflow: hidden;
+    }
+
+/* Banners on both sides */
+.side-banner {
+  position: fixed;
+  top: 80px;         
+  width: 240px;
+  height: 800px;      
+  background-color: white;
+  border: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.side-banner img {
+  width: 100%;
+  height: auto;
+}
+
+/* Left and right positioning */
+.left-banner {
+  left: 220px;
+}
+
+.right-banner {
+  right: 10px;
+}
+
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+
+  .events-panel {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 180px;
+    background-color: #f2f2f2; /* Light Roblox gray */
+    border-top-right-radius: 6px;
+    border: 1px solid #d1d1d1;
+    border-left: none;
+    padding: 10px 10px 5px 10px;
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+    font-family: "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .events-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 6px;
+    text-align: left;
+  }
+
+  .events-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .events-container img {
+    width: 100%;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    cursor: pointer;
+    object-fit: cover;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .events-container img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  /* make it responsive */
+  @media (max-width: 700px) {
+    .events-panel {
+      position: static;
+      width: 100%;
+      border-radius: 0;
+      border: none;
+      box-shadow: none;
+    }
+
+    .events-container {
+      flex-direction: row;
+      justify-content: center;
+    }
+
+    .events-container img {
+      max-width: 45%;
+    }
+  }
+
+    body {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+
+    /* this is the navigation bar on the top, hi miss grace QQBYL */
+    .navbar {
+      background-color: #0074e0;
+      height: 50px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      border-bottom: 1px solid #0063bf;
+      z-index: 10;
+    }
+
+    /* Left side links */
+    .navbar-left {
+      display: flex;
+      align-items: center;
+      gap: 80px;
+    }
+
+    .navbar-left a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: 500;
+      transition: 0.2s;
+    }
+
+    .navbar-left a:hover {
+      text-decoration: underline;
+    }
+
+    /* Center search bar */
+    .navbar-center {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    .navbar-center input {
+      width: 400px;
+      max-width: 60%;
+      padding: 7px 10px;
+      border-radius: 4px;
+      border: none;
+      font-size: 14px;
+      background-color: #f8f8f8;
+      color: #333;
+    }
+
+    .navbar-center input:focus {
+      outline: none;
+      border: 1px solid #ccc;
+    }
+
+    /* Right side profile */
+    .navbar-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .navbar-right img {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #fff;
+      cursor: pointer;
+    }
+
+    .navbar-right span {
+      color: #fff;
+      font-weight: 500;
+      font-size: 15px;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 50px;
+      left: 0;
+      width: 200px;
+      height: calc(100% - 50px);
+      background-color: #fff;
+      border-right: 1px solid #ddd;
+      padding-top: 20px;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 10px 20px;
+      text-decoration: none;
+      color: #333;
+      font-size: 14px;
+    }
+
+    .sidebar a:hover {
+      background-color: #f0f0f0;
+    }
+
+    /* Main content */
+    .content {
+      margin-left: 2px;
+      padding: 80px 30px 0px 0px; /* space for navbar */
+    }
+
+    .section-title {
+      max-width: 1000px;
+      font-size: 50px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(2000px, 1fr));
+      gap: 20px;
+    }
+
+.section-head {
+      font-size: 30px;
+      font-weight:bold;
+      margin-bottom: 0px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(2000px, 1fr));
+      gap: 20px;
+    }
+
+.text-grid {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;              /* space between cards */
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 20px 0;
+  justify-content: center; /* centers them horizontally */
+    overflow: visible;
+  padding-left: 10px;
+}
+
+.text-grid a {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+}
+
+
+.text-grid::-webkit-scrollbar {
+  height: 8px;
+}
+.text-grid::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+
+
+
+_
+    .text-box {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      padding: 20px;
+      text-align: center;
+      font-size: 14px;
+      font-weight: 500;
+      color: #333;
+      transition: 0.2s;
+    }
+
+    .text-box:hover {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      transform: translateY(-3px);
+    }
+_____________________________
+.game-card {
+  flex: 0 0 260px;
+  width: 260px;
+  height: 260px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  background-color: white;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.game-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.game-card img {
+  width: 200px;            /* fix — used to be 200% */
+  height: 200px;          /* consistent thumbnail height */
+  object-fit: cover;
+  display: block;
+}
+
+.text-byl {
+  padding: 8px 4px;
+  font-size: 18px;
+  color: #000;
+  background-color: white;
+  border-top: 1px solid #ddd;
+}
+  .roblox-sidebar {
+    width: 220px;
+    background-color: #fff;
+    border-right: 1px solid #ddd;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 14px;
+    color: #222;
+    padding: 15px 0;
+    height: 100vh;
+    overflow-y: auto;
+  }
+
+  .sidebar-title {
+    font-weight: bold;
+    font-size: 16px;
+    padding: 0 20px 10px 20px;
+  }
+
+  .roblox-sidebar a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #222;
+    text-decoration: none;
+    padding: 8px 20px;
+    transition: 0.2s;
+  }
+
+  .roblox-sidebar a:hover {
+    background-color: #f2f2f2;
+  }
+
+  .roblox-sidebar img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+  }
+
+  .sidebar-divider {
+    border-top: 1px solid #ddd;
+    margin: 10px 0;
+  }
+
+  .sidebar-blog {
+    padding: 0 20px;
+  }
+
+  .blog-post {
+    margin-bottom: 10px;
+  }
+
+  .blog-post strong {
+    display: block;
+    font-size: 13px;
+    color: #111;
+    margin-bottom: 2px;
+  }
+
+  .blog-post .date {
+    font-size: 12px;
+    color: #666;
+  }
+
+  /* Optional scrollbar styling */
+  .roblox-sidebar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .roblox-sidebar::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 3px;
+  }
+  .game-link {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+  }
+
+  .game-link:hover .game-card {
+    transform: scale(1.03);
+    transition: transform 0.2s ease;
+  }
+_____________________________
+  </style>
+</head>
+<body style="font-family:Source Sans Pro">
+
+<div class="page-content">
+
+<!-- Right ad-->
+<div class="side-banner right-banner">
+  <a href="money.html">
+  <img src="banneradright.png" alt="Right Banner">
+  </a>
+</div>
+
+
+<!--ts lowkey kinda finished-->
+  <div class="navbar">
+    <div class="navbar-left">
+      <a style="font-weight: 900;font-size:30px;font-family:EDO SZ">E-PORTFOLIO</a>
+      <a href="https://www.google.com/search?sca_esv=504682394de47591&rlz=1C1ONGR_enPH1040PH1040&udm=2&fbs=AIIjpHxU7SXXniUZfeShr2fp4giZ1Y6MJ25_tmWITc7uy4KIeqDdErwP5rACeJAty2zADJgYJpo1blvMpITBRgbnARM6y8KwxzRsF24u6g33NutBQg5oTaOPEjih5eaMj6wzNwVlSxn-MNwbBdUA9B4sO8l0S9hJpD6Wt_OpCHxDRG0pi1fT-ENP3H1FmrIfGb1NxYkr-Y-XmNG8SFFkgv3Q-YKlpE93jg&q=gambling&sa=X&ved=2ahUKEwjH7oqJpqmQAxUff_UHHU85LlcQtKgLegQIDBAB&biw=3440&bih=1400&dpr=1">Discover</a>
+      <a href="money.html">Money</a>
+      <a href="interactive.html">Ap Interactivity</a>
+    </div>
+
+    <div class="navbar-center">
+      <input type="text" placeholder="Search" />
+    </div>
+
+    <div class="navbar-right">
+      <a href="settings.html">
+  <img 
+    src="https://www.iconpacks.net/icons/2/free-settings-icon-3110-thumb.png" 
+    alt="Settings" 
+    style="width:24px; height:24px; vertical-align:middle; cursor:pointer;"
+  />
+      </a>
+
+      <img src="https://i.redd.it/jjkzoqukuf7e1.jpeg" alt="Profile" />
+      <span>Marcus Lee</span>
+    </div>
+  </div>
+
+  <div class="sidebar">
+    <a href="roblox.html">User</a>
+  <div class="sidebar-divider"></div>
+    <a href="roblox.html">Home</a>
+    <a href="Profile.html">Profile</a>
+    <a href="https://www.messenger.com/">Messenger</a>
+    <a href="https://yakuza.fandom.com/wiki/Tojo_Clan">Groups</a>
+    <a href="https://www.shutterstock.com/image-photo/timisoara-romania-february-18-2023-260nw-2493487847.jpg">Avatar</a>
+    <a href="#"><img src="https://via.placeholder.com/20" alt=""> Blog</a>
+
+  <div class="sidebar-divider"></div>
+
+  <div class="sidebar-blog">
+    <div class="blog-post" data-date="2025-10-18">
+      <strong>THE E PORTFOLIO IS DUE</strong>
+      <div class="date"></div>
+    </div>
+    <div class="blog-post" data-date="2025-10-11">
+      <strong>Subjected to SLAVERY on this portfolio </strong>
+      <div class="date"></div>
+    </div>
+    <div class="blog-post" data-date="2025-9-11">
+      <strong>Remembering 9/11</strong>
+      <div class="date"></div>
+    </div>
+  </div>
+</div>
+<pre>
+
+
+
+
+</pre>
+<embed src="Q2L4.pdf" type="application/pdf" width="100%" height="670px" title="Embedded PDF Viewer">
+
+<!-- that one panel raw blocking style yeaa -->
+ <div class="events-panel">
+    <div class="events-title">Events</div>
+    <div class="events-container">
+    <a href="https://forms.office.com/pages/responsepage.aspx?id=lGlAEVSmHUuVD0TJ4-lp8rboEGjZy6lNiQpPxSEtQKtUREtMR0IzTlhSQkRNS0dHOTJXREw2T0Q5Vy4u&origin=QRCode&route=shorturl">
+      <img src="https://scontent.fmnl9-6.fna.fbcdn.net/v/t1.15752-9/553594967_1302858681590453_6234532510399303732_n.png?_nc_cat=107&ccb=1-7&_nc_sid=9f807c&_nc_eui2=AeFphv7HbacmBZgKxs2PkJ5He2ZChaN9wt17ZkKFo33C3ZweVBnTz-Hidr6H_8kZ9jsArNLmBeYNB8AK4GD8M1my&_nc_ohc=84DPf5RaxkAQ7kNvwGt0lyd&_nc_oc=Adl912cHfM7_RYSdjrlku6h9-ZCeLSNjMu-U815d_CS7Oss4vXhEYOO_Gejti9uSGew&_nc_zt=23&_nc_ht=scontent.fmnl9-6.fna&oh=03_Q7cD3gF2vEpy4CxwaoKlHKyp3WFrjmPixzZX5Wq6bBL4DVY9gQ&oe=69189CFF" alt="Event 1" />
+    </div>
+ </div>
+<script>
+  const posts = document.querySelectorAll(".blog-post");
+
+  posts.forEach(post => {
+    const dateText = post.querySelector(".date");
+    const postDate = new Date(post.dataset.date);
+    const today = new Date();
+    const diffTime = today - postDate;
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+    if (diffDays === 0) {
+      dateText.textContent = "(today)";
+    } else if (diffDays === 1) {
+      dateText.textContent = "(1 day ago)";
+    } else {
+      dateText.textContent = `(${diffDays} days ago)`;
+    }
+  });
+</script>
+</p>
+</body>
+</html>
